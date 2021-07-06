@@ -1,30 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import {
-  BehaviorSubject,
-  combineLatest,
-  EMPTY,
-  from,
-  merge,
-  Subject,
-  throwError,
-  of,
-  Observable,
-} from 'rxjs';
-import {
-  catchError,
-  filter,
-  map,
-  mergeMap,
-  scan,
-  shareReplay,
-  tap,
-  toArray,
-  switchMap,
-} from 'rxjs/operators';
-
-import { Playlist } from './playlist';
+import { catchError, map, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -50,10 +28,8 @@ export class PlaylistService {
     map((data) => data.featuredPlaylists.content),
     catchError(this.handleError)
   );
-  
-  constructor(
-    private http: HttpClient
-  ) {}
+
+  constructor(private http: HttpClient) {}
 
   private handleError(err: any): Observable<never> {
     // in a real world app, we may send the server to some remote logging infrastructure
