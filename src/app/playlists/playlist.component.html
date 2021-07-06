@@ -1,0 +1,49 @@
+<div class="card ">
+  <div class="card-header">{{ pageTitle }}</div>
+
+  <div class="card-body " *ngIf="vm$ | async as vm">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-3">
+          <select
+            class="form-control"
+            (change)="onSelected($event.target.value)"
+          >
+            <option value="0">- Display All -</option>
+            <option *ngFor="let curator of vm.curators" [value]="curator">
+              {{ curator }}
+            </option>
+          </select>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table mb-0" *ngIf="vm.playlists">
+        <thead>
+          <tr>
+            <th>Artwork</th>
+            <th>Name</th>
+            <th>Kind</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let playlist of vm.playlists">
+          <tr>
+            <td><img class="artworkImg" src="{{ playlist.artwork }}" /></td>
+            <td>
+              <a class="nav-link" href="{{ playlist.url }}" target="_blank">{{
+                playlist.name
+              }}</a>
+            </td>
+            <td>{{ playlist.kind }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="alert alert-danger" *ngIf="errorMessage$ | async as errorMessage">
+  {{ errorMessage }}
+</div>

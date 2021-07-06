@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="card-header">
+    {{ pageTitle }}
+  </div>
+  <div class="card-body d-flex justify-content-center align-items-center">
+    <div class="container-fluid">
+      <div class="text-center">
+        <a
+          class="nav-link"
+          [routerLink]="['/playlists']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          ><h1>Featured PlayLists</h1></a
+        >
+      </div>
+    </div>
+  </div>
+</div>
